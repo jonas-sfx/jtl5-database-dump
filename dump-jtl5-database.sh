@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## filename      dump-jtl-database.sh
+## filename      dump-jtl5-database.sh
 ## description:  read db-credentials from your jtl-5-config
 ##               and create a database-dump of the shop.
 ## author:       jonas@sfxonline.de
