@@ -29,7 +29,7 @@ remote_mysql_port=3306
 echo "Host:     $remote_mysql_host"
 echo "Database: $remote_mysql_database"
 echo "User:     $remote_mysql_user"
-echo "User:     $remote_mysql_password"
+# echo "Password: $remote_mysql_password"
 
 # thats for using tcp and not sock for sure
 if [ "$remote_mysql_host" = "localhost" ]; then
