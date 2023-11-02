@@ -20,6 +20,7 @@ echo "---------"
 
 echo "- Get Config for MySQL-Data transfer"
 remote_config=$(ssh "$host" "cat $webroot/includes/config.JTL-Shop.ini.php")
+remote_config=$(echo "$remote_config" | grep '^[ ]*[^/][^/]*')
 remote_mysql_host=$(echo "$remote_config" | grep -o 'DB_HOST", "[^"]*' | cut -d '"' -f 3)
 remote_mysql_user=$(echo "$remote_config" | grep -o 'DB_USER", "[^"]*' | cut -d '"' -f 3)
 remote_mysql_password=$(echo "$remote_config" | grep -o 'DB_PASS", "[^"]*' | cut -d '"' -f 3)
