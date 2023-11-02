@@ -46,6 +46,7 @@ ssh -4 -f -L $tunnelport:$remote_mysql_host:$remote_mysql_port $host sleep 10; \
   --column-statistics=0 \
   --complete-insert \
   --add-drop-table \
+  --skip-lock-tables \
   > tmp4dumps/$remote_mysql_database.sql
 
 # OPTIONAL: if dumping into an existing environment you could work with IF NOT EXISTS and REPLACE INTO-Alternatives
