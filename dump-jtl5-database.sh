@@ -21,10 +21,17 @@ echo "---------"
 echo "- Get Config for MySQL-Data transfer"
 remote_config=$(ssh "$host" "cat $webroot/includes/config.JTL-Shop.ini.php")
 remote_config=$(echo "$remote_config" | grep '^[ ]*[^/][^/]*')
-remote_mysql_host=$(echo "$remote_config" | grep -o 'DB_HOST", "[^"]*' | cut -d '"' -f 3)
-remote_mysql_user=$(echo "$remote_config" | grep -o 'DB_USER", "[^"]*' | cut -d '"' -f 3)
-remote_mysql_password=$(echo "$remote_config" | grep -o 'DB_PASS", "[^"]*' | cut -d '"' -f 3)
-remote_mysql_database=$(echo "$remote_config" | grep -o 'DB_NAME", "[^"]*' | cut -d '"' -f 3)
+remote_mysql_host=$(echo "$remote_config" | grep -o 'DB_HOST",[ ]*"[^"]*' | cut -d '"' -f 3)
+[ -z "$remote_mysql_host" ] && remote_mysql_host=$(echo "$remote_config" | grep -o 'DB_HOST'"'"',[ ]*'"'"'[^'"'"']*' | cut -d ''"'"'' -f 3)
+
+remote_mysql_user=$(echo "$remote_mysql_user" | grep -o 'DB_USER",[ ]*"[^"]*' | cut -d '"' -f 3)
+[ -z "$remote_mysql_user" ] && remote_mysql_user=$(echo "$remote_config" | grep -o 'DB_USER'"'"',[ ]*'"'"'[^'"'"']*' | cut -d ''"'"'' -f 3)
+
+remote_mysql_password=$(echo "$remote_mysql_password" | grep -o 'DB_PASS",[ ]*"[^"]*' | cut -d '"' -f 3)
+[ -z "$remote_mysql_password" ] && remote_mysql_password=$(echo "$remote_config" | grep -o 'DB_PASS'"'"',[ ]*'"'"'[^'"'"']*' | cut -d ''"'"'' -f 3)
+
+remote_mysql_database=$(echo "$remote_mysql_database" | grep -o 'DB_NAME",[ ]*"[^"]*' | cut -d '"' -f 3)
+[ -z "$remote_mysql_database" ] && remote_mysql_database=$(echo "$remote_config" | grep -o 'DB_NAME'"'"',[ ]*'"'"'[^'"'"']*' | cut -d ''"'"'' -f 3)
 remote_mysql_port=3306
 
 if [[ $remote_mysql_host == *":"* ]]; then
