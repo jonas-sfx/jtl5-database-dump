@@ -27,7 +27,12 @@ remote_mysql_password=$(echo "$remote_config" | grep -o 'DB_PASS", "[^"]*' | cut
 remote_mysql_database=$(echo "$remote_config" | grep -o 'DB_NAME", "[^"]*' | cut -d '"' -f 3)
 remote_mysql_port=3306
 
+if [[ $remote_mysql_host == *":"* ]]; then
+  remote_mysql_port=$(echo "$remote_mysql_host" | cut -d ':' -f 2)
+  remote_mysql_host=$(echo "$remote_mysql_host" | cut -d ':' -f 1)
+fi
 echo "Host:     $remote_mysql_host"
+echo "Port:     $remote_mysql_port"
 echo "Database: $remote_mysql_database"
 echo "User:     $remote_mysql_user"
 # echo "Password: $remote_mysql_password"
