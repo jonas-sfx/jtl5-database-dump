@@ -1,5 +1,15 @@
-{
-    "name": "Mustershop24",
-    "host": "shop.domain.de",
-    "webroot": "/home/myusername/domains/shop.domain.de/public_html/"
-}
+[
+  {
+    "name": "Demo Shop",
+    "shortname": "demoshop",
+    "host": "www.demoshop.com",
+    "webroot": "/home/abc/www.demoshop.com"
+  },
+  {
+    "name": "Test Shop",
+    "shortname": "testshop",
+    "host": "testshop.com",
+    "externalmysqlhost": "testshop.com",
+    "webroot": "/www/htdocs/def/testshop.com/public_html"
+  }
+]
